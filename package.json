@@ -1,0 +1,39 @@
+{
+  "name": "fullstack-blog-mern",
+  "description": "",
+  "version": "1.0.0",
+  "main": "/dist/index.ts",
+  "type": "commonjs",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "ts-node index.ts",
+    "start:dev": "nodemon index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ruslan3101/fullstack-blog-mern.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ruslan3101/fullstack-blog-mern/issues"
+  },
+  "homepage": "https://github.com/Ruslan3101/fullstack-blog-mern#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.2",
+    "concurrently": "^9.1.0",
+    "nodemon": "^3.1.9",
+    "prettier": "3.4.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@types/jsonwebtoken": "^9.0.7",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
