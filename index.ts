@@ -2,6 +2,8 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
+import { registerValidation } from "./validations/auth";
+import { validationResult } from "express-validator";
 
 dotenv.config();
 mongoose
@@ -18,10 +20,21 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
 
+app.post(
+  "/auth/register",
+  registerValidation,
+  (req: Request, res: Response): void => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).json({ errors: errors.array() });
+      return;
+    }
 
-app.post("/auth/register", (req: Request, res: Response) => {
-    
-});
+    res.json({
+      success: true,
+    });
+  }
+);
 //Another example of initializing token
 // const payload = {
 //     userId: 1,
@@ -33,8 +46,6 @@ app.post("/auth/register", (req: Request, res: Response) => {
 
 //   const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
 
-// ruslanlutfullin95
-//FDqGNynigfMQpmT4
 const server = app.listen(port, (): void => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
