@@ -8,7 +8,9 @@ import UserModel from "./models/User";
 import checkAuth from "./utils/CheckAuth";
 import bcrypt from "bcrypt";
 import * as UserController from "./controllers/UserController";
+import * as PostController from "./controllers/PostController";
 import { loginValidation } from "./validations/login";
+import { postCreateValidation } from "./validations/post";
 
 dotenv.config();
 mongoose
@@ -28,6 +30,12 @@ app.use(express.json());
 app.post("/auth/login", loginValidation, UserController.login);
 app.post("/auth/register", registerValidation, UserController.register);
 app.get("/auth/me", checkAuth, UserController.getMe);
+
+app.get("/posts", PostController.getAll);
+app.get("/posts/:id", PostController.getOne);
+app.post("/posts", checkAuth, postCreateValidation, PostController.create);
+app.patch("/posts/:id", checkAuth, PostController.update);
+app.delete("/posts/:id", checkAuth, PostController.remove);
 
 const server = app.listen(port, (): void => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
