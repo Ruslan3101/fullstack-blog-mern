@@ -15,7 +15,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
   } else {
     try {
       const decoded = jwt.verify(token, "secret123") as JwtPayload;
-      
+
       res.locals.userId = decoded.id;
       next();
     } catch (err) {
